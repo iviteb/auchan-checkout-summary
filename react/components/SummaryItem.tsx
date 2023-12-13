@@ -2,8 +2,10 @@ import React from 'react'
 import { defineMessages, FormattedMessage } from 'react-intl'
 import { FormattedPrice } from 'vtex.formatted-price'
 import { useCssHandles } from 'vtex.css-handles'
+import { Tooltip } from 'react-tooltip'
 
 import { slugify } from '../modules/slugify'
+import InfoIcon from '../icons/InfoIcon'
 
 defineMessages({
   Shipping: {
@@ -21,6 +23,14 @@ defineMessages({
   Discounts: {
     id: 'store/checkout-summary.Discounts',
     defaultMessage: 'Discounts',
+  },
+  Packaging: {
+    id: 'store/checkout-summary.Packaging',
+    defaultMessage: 'Taxa Ambalare',
+  },
+  SGR: {
+    id: 'store/checkout-summary.SGR',
+    defaultMessage: 'Garantie',
   },
   Tax: {
     id: 'store/checkout-summary.Tax',
@@ -41,11 +51,20 @@ const CSS_HANDLES = [
   'summaryItemLabel',
   'summaryItemPrice',
   'summaryItemOriginalPrice',
+  'packagingTooltipWrapper',
+  'packagingTooltip',
+  'packagingTooltipContent',
 ] as const
 
 function SummaryItem({ label, name, large, value, originalValue = 0 }: Props) {
   const handles = useCssHandles(CSS_HANDLES)
   const itemId = slugify(label)
+
+  const tooltipContent = (
+    <div className={`${handles.packagingTooltipContent} f6 lh-copy`}>
+      <FormattedMessage id="store/checkout-summary.PackagingTooltip" />
+    </div>
+  )
 
   return (
     <div
@@ -61,6 +80,27 @@ function SummaryItem({ label, name, large, value, originalValue = 0 }: Props) {
           (label && (
             <FormattedMessage id={`store/checkout-summary.${label}`} />
           ))}
+        {itemId === 'packaging' && (
+          <div
+            className={`${handles.packagingTooltipWrapper} inline-flex items-center c-on-base`}
+          >
+            <InfoIcon
+              width={20}
+              height={20}
+              className="pointer outline-0"
+              id="packaging-tooltip-info"
+            />
+            <Tooltip
+              anchorSelect="#packaging-tooltip-info"
+              closeOnEsc
+              closeOnScroll
+              closeOnResize
+              className={`${handles.packagingTooltip} br2`}
+            >
+              {tooltipContent}
+            </Tooltip>
+          </div>
+        )}
       </div>
       {itemId === 'items' && value && originalValue > value && (
         <div

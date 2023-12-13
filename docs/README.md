@@ -21,7 +21,7 @@ Compact version:
 ```json
 {
   "dependencies": {
-    "vtex.checkout-summary": "0.x"
+    "auchan.checkout-summary": "0.x"
   }
 }
 ```
