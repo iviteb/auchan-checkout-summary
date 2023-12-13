@@ -6,6 +6,7 @@
   "store/checkout-summary.Summary": "Summary",
   "store/checkout-summary.Packaging": "Estimate cost for bags",
   "store/checkout-summary.PackagingTooltip": "Tooltip message",
+  "store/checkout-summary.SGR": "Garantie",
   "store/checkout-summary.Total": "Total",
   "store/checkout-summary.disclaimer": "Shipping and taxes calculated in the Cart.",
   "admin/editor.checkout-summary.label": "Summary",

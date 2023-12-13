@@ -28,6 +28,10 @@ defineMessages({
     id: 'store/checkout-summary.Packaging',
     defaultMessage: 'Taxa Ambalare',
   },
+  SGR: {
+    id: 'store/checkout-summary.SGR',
+    defaultMessage: 'Garantie',
+  },
   Tax: {
     id: 'store/checkout-summary.Tax',
     defaultMessage: 'Taxes',
